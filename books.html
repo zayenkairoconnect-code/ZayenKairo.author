@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <meta name="description" content="Explore practical technology books by Zayen Kairo, covering programming, Linux, networking and artificial intelligence.">
+  <meta name="theme-color" content="#f3f0e7">
+
+  <title>Books | Zayen Kairo — Technology Author</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/books-page.css">
+
+
+<style>
+/* Read More / Read Less — direct page-level styling */
+
+body.books-page button.description-toggle {
+  all: unset !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 10px !important;
+  margin-top: 13px !important;
+  padding: 0 0 6px !important;
+
+  color: #34483d !important;
+  background: transparent !important;
+  border: none !important;
+  border-bottom: 1px solid #b49a6d !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+
+  font-family: "DM Sans", sans-serif !important;
+  font-size: 10px !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.13em !important;
+  line-height: 1.4 !important;
+  text-transform: uppercase !important;
+
+  cursor: pointer !important;
+  transition: color .25s ease !important;
+}
+
+body.books-page button.description-toggle span {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: 21px !important;
+  height: 21px !important;
+  border: 1px solid rgba(52,72,61,.35) !important;
+  border-radius: 50% !important;
+  color: #718572 !important;
+  font-size: 13px !important;
+  line-height: 1 !important;
+  transition: .25s ease !important;
+}
+
+body.books-page button.description-toggle:hover {
+  color: #92764d !important;
+}
+
+body.books-page button.description-toggle:hover span {
+  background: #34483d !important;
+  border-color: #34483d !important;
+  color: #f3f0e7 !important;
+}
+
+body.books-page button.description-toggle:focus-visible {
+  outline: 2px solid #b49a6d !important;
+  outline-offset: 4px !important;
+}
+</style>
+
+
+  <script src="js/books-data.js" defer></script>
+  <script src="js/main.js" defer></script>
+  <script src="js/books-page.js" defer></script>
+</head>
+
+<body class="books-page">
+  <a class="books-skip-link" href="#book-collection">Skip to book collection</a>
+  <div id="site-header"></div>
+
+  <main>
+    <section class="books-intro">
+      <div class="wrap books-intro-inner">
+        <div class="books-intro-copy">
+          <p class="books-eyebrow">
+            <span class="books-eyebrow-line"></span>
+            THE ZAYEN KAIRO LIBRARY
+          </p>
+          <h1>Books that turn<br>knowledge into <em>action.</em></h1>
+          <div class="books-intro-bottom">
+            <span>EXPLORE THE COLLECTION</span>
+            <span class="books-intro-arrow" aria-hidden="true">↓</span>
+          </div>
+        </div>
+        <div class="books-intro-number" aria-hidden="true">
+          <span>THE</span>
+          <strong>BOOKS</strong>
+          <span>BY ZAYEN KAIRO</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="books-collection" id="book-collection">
+      <div class="wrap">
+        <div class="books-collection-heading">
+          <div>
+            <p class="books-eyebrow books-eyebrow-dark">THE COLLECTION</p>
+            <h2>Explore the <em>library.</em></h2>
+          </div>
+          <span class="books-collection-index">01 — BOOKS</span>
+        </div>
+        <div class="books-list" id="all-books"></div>
+      </div>
+    </section>
+
+    <section class="books-closing">
+      <div class="wrap books-closing-inner">
+        <p class="books-eyebrow">ZAYEN KAIRO · AUTHOR</p>
+        <h2>Stay curious.<br><em>Keep building.</em></h2>
+        <a href="resources.html" class="books-closing-button">
+          Explore free resources <span aria-hidden="true">↗</span>
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <div id="site-footer"></div>
+</body>
+</html>

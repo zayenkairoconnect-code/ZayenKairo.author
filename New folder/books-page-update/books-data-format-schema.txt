@@ -1,0 +1,30 @@
+/*
+Add a `formats` property inside each existing book object in books-data.js.
+Keep all your current titles, descriptions, cover paths and metadata unchanged.
+
+Example structure (replace the blank values with the real Amazon format URLs
+and current prices for that specific book):
+
+formats: {
+  Kindle: {
+    price: "",
+    amazonUrl: ""
+  },
+  Paperback: {
+    price: "",
+    amazonUrl: ""
+  },
+  Hardcover: {
+    price: "",
+    amazonUrl: ""
+  }
+}
+
+Prices are displayed in US dollars. If a format is not published, remove that
+format property from the object. The format selector will then show only the
+formats that exist in the `formats` object.
+
+Until you add `formats`, the page remains backward-compatible with your current
+book object: it will show all three choices, but only the existing `book.format`
+will inherit the current `book.price` and `book.amazonUrl`.
+*/
