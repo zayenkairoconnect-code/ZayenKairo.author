@@ -161,8 +161,8 @@ It is intended for learners and IT professionals who want to strengthen their ne
       },
 
       Hardcover: {
-        price: "",
-        amazonUrl: ""
+        price: 36.99,
+        amazonUrl: "https://www.amazon.com/dp/B0HS1GH8D4"
       }
     },
 

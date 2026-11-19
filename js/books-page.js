@@ -64,22 +64,22 @@ document.addEventListener("DOMContentLoaded", () => {
     const shortDescription = String(book.description || "");
     const fullDescription = String(book.fullDescription || book.description || "");
     const hasMore = fullDescription.length > shortDescription.length + 20;
-    
 
-const number = String(index + 1).padStart(2, "0");
-const card = document.createElement("article");
 
-card.className = "shelf-book-card";
+    const number = String(index + 1).padStart(2, "0");
+    const card = document.createElement("article");
 
-// Give each book a unique URL anchor
-const slug = book.title
-  .toLowerCase()
-  .replace(/[^a-z0-9]+/g, "-")
-  .replace(/^-|-$/g, "");
+    card.className = "shelf-book-card";
 
-card.id = `book-${slug}`;
+    // Give each book a unique URL anchor
+    const slug = book.title
+      .toLowerCase()
+      .replace(/[^a-z0-9]+/g, "-")
+      .replace(/^-|-$/g, "");
 
-card.style.setProperty("--book-index", index);
+    card.id = `book-${slug}`;
+
+    card.style.setProperty("--book-index", index);
 
 
     const formatOptions = formats.map((format, formatIndex) => `
@@ -119,10 +119,21 @@ card.style.setProperty("--book-index", index);
             ${hasMore ? `<span class="description-full" hidden>${escapeHTML(fullDescription)}</span>` : ""}
           </p>
           ${hasMore ? `
-            <button class="description-toggle" type="button" aria-expanded="false">
-              Read more <span aria-hidden="true">＋</span>
-            </button>
-          ` : ""}
+           
+            <div class="book-readmore-row">
+
+         <button class="description-toggle" type="button" aria-expanded="false">
+           Read more <span aria-hidden="true">＋</span>
+         </button>
+
+         ${book.title === "Linux for Beginners"
+    ? '<span class="amazon-bestseller-badge">#1 Best Seller</span>'
+    : book.title === "Computer Networking Mastery"
+        ? '<span class="amazon-newrelease-badge">#1 New Release</span>'
+        : ""}
+        </div>
+          `
+        : ""}
         </div>
 
         <section class="shelf-format-panel" aria-label="Choose book format">
@@ -188,52 +199,52 @@ card.style.setProperty("--book-index", index);
       });
 
       // Animate the format label
-nameElement.animate(
-  [
-    { opacity: 0, transform: "translateY(5px)" },
-    { opacity: 1, transform: "translateY(0)" }
-  ],
-  { duration: 300, easing: "ease-out" }
-);
+      nameElement.animate(
+        [
+          { opacity: 0, transform: "translateY(5px)" },
+          { opacity: 1, transform: "translateY(0)" }
+        ],
+        { duration: 300, easing: "ease-out" }
+      );
 
-nameElement.textContent = selected.name;
+      nameElement.textContent = selected.name;
 
-// Animate the price
-priceElement.animate(
-  [
-    { opacity: 0, transform: "translateY(8px) scale(0.97)" },
-    { opacity: 1, transform: "translateY(0) scale(1)" }
-  ],
-  { duration: 400, easing: "ease-out" }
-);
+      // Animate the price
+      priceElement.animate(
+        [
+          { opacity: 0, transform: "translateY(8px) scale(0.97)" },
+          { opacity: 1, transform: "translateY(0) scale(1)" }
+        ],
+        { duration: 400, easing: "ease-out" }
+      );
 
-priceElement.textContent = money(selected.price);
+      priceElement.textContent = money(selected.price);
 
       if (selected.amazonUrl) {
-  amazonLink.href = selected.amazonUrl;
-  amazonLink.textContent = "VIEW ON AMAZON ";
+        amazonLink.href = selected.amazonUrl;
+        amazonLink.textContent = "VIEW ON AMAZON ";
 
-  const arrow = document.createElement("span");
-  arrow.setAttribute("aria-hidden", "true");
-  arrow.textContent = "↗";
-  amazonLink.appendChild(arrow);
+        const arrow = document.createElement("span");
+        arrow.setAttribute("aria-hidden", "true");
+        arrow.textContent = "↗";
+        amazonLink.appendChild(arrow);
 
-  amazonLink.classList.remove("is-unavailable");
-  amazonLink.removeAttribute("aria-disabled");
-  amazonLink.target = "_blank";
-  amazonLink.rel = "noopener noreferrer";
+        amazonLink.classList.remove("is-unavailable");
+        amazonLink.removeAttribute("aria-disabled");
+        amazonLink.target = "_blank";
+        amazonLink.rel = "noopener noreferrer";
 
-  formatNote.textContent = "";
-} else {
-  amazonLink.href = "#";
-  amazonLink.textContent = "AMAZON LINK NOT ADDED";
-  amazonLink.classList.add("is-unavailable");
-  amazonLink.setAttribute("aria-disabled", "true");
-  amazonLink.removeAttribute("target");
-  amazonLink.removeAttribute("rel");
+        formatNote.textContent = "";
+      } else {
+        amazonLink.href = "#";
+        amazonLink.textContent = "AMAZON LINK NOT ADDED";
+        amazonLink.classList.add("is-unavailable");
+        amazonLink.setAttribute("aria-disabled", "true");
+        amazonLink.removeAttribute("target");
+        amazonLink.removeAttribute("rel");
 
-  
-}
+
+      }
     };
 
     formatButtons.forEach((button, buttonIndex) => {

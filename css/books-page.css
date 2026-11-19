@@ -1171,6 +1171,217 @@
   display: none !important;
 }
 
+
+/* Bestseller badge — premium animated treatment */
+
+.book-readmore-row {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.amazon-bestseller-badge {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 6px 11px;
+
+    background: #C45500;
+    color: #FFFFFF;
+
+    border: 1px solid #A94700;
+    border-radius: 3px;
+
+    font-family: Arial, sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    line-height: 1.2;
+
+    white-space: nowrap;
+    overflow: hidden;
+
+    box-shadow: 0 2px 5px rgba(196, 85, 0, 0.20);
+
+    animation: bestseller-glow 3s ease-in-out infinite;
+}
+
+/* Moving highlight across the badge */
+.amazon-bestseller-badge::after {
+    content: "";
+    position: absolute;
+    top: -50%;
+    left: -75%;
+    width: 45%;
+    height: 200%;
+
+    background: linear-gradient(
+        110deg,
+        transparent,
+        rgba(255, 255, 255, 0.42),
+        transparent
+    );
+
+    transform: skewX(-20deg);
+    animation: bestseller-shine 4s ease-in-out infinite;
+}
+
+
+/* Blue New Release badge — Computer Networking Mastery */
+
+.amazon-newrelease-badge {
+    display: inline-block;
+    position: relative;
+    overflow: hidden;
+
+    padding: 6px 11px;
+
+    background: #1769AA;
+    color: #FFFFFF;
+
+    border: 1px solid #10558C;
+    border-radius: 3px;
+
+    font-family: Arial, sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    line-height: 1.2;
+
+    white-space: nowrap;
+
+    box-shadow: 0 2px 5px rgba(23, 105, 170, 0.2);
+
+    animation: bestseller-attention 1.8s ease-in-out infinite;
+    transform-origin: center;
+}
+
+.amazon-newrelease-badge::after {
+    content: "";
+    position: absolute;
+    top: -50%;
+    left: -75%;
+    width: 45%;
+    height: 200%;
+
+    background: linear-gradient(
+        110deg,
+        transparent,
+        rgba(255, 255, 255, 0.42),
+        transparent
+    );
+
+    transform: skewX(-20deg);
+    animation: bestseller-shine 4s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .amazon-newrelease-badge,
+    .amazon-newrelease-badge::after {
+        animation: none;
+    }
+}
+
+
+/* Gentle attention-drawing glow */
+@keyframes bestseller-glow {
+    0%, 100% {
+        box-shadow: 0 2px 5px rgba(196, 85, 0, 0.18);
+    }
+
+    50% {
+        box-shadow: 0 3px 11px rgba(196, 85, 0, 0.38);
+    }
+}
+
+/* Slow, elegant shine */
+@keyframes bestseller-shine {
+    0%, 65% {
+        left: -75%;
+    }
+
+    100% {
+        left: 150%;
+    }
+}
+
+
+/* FAST ANIMATION FOR ALL BOOK BADGES */
+
+.amazon-bestseller-badge,
+.amazon-newrelease-badge {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    transform-origin: center;
+
+    animation: badgePulse 3s ease-in-out infinite;
+}
+
+/* Moving shine */
+.amazon-bestseller-badge::after,
+.amazon-newrelease-badge::after {
+    content: "";
+    position: absolute;
+    top: -50%;
+    left: -100%;
+    width: 45%;
+    height: 200%;
+
+    background: linear-gradient(
+        110deg,
+        transparent,
+        rgba(255, 255, 255, 0.65),
+        transparent
+    );
+
+    transform: skewX(-20deg);
+    animation: badgeShine 3s ease-in-out infinite;
+}
+
+@keyframes badgePulse {
+    0%, 100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.08);
+    }
+}
+
+@keyframes badgeShine {
+    0%, 55% {
+        left: -100%;
+    }
+
+    100% {
+        left: 150%;
+    }
+}
+
+/* Accessibility */
+@media (prefers-reduced-motion: reduce) {
+    .amazon-bestseller-badge,
+    .amazon-newrelease-badge,
+    .amazon-bestseller-badge::after,
+    .amazon-newrelease-badge::after {
+        animation: none !important;
+    }
+}
+
+
+/* Accessibility: respect reduced-motion preferences */
+@media (prefers-reduced-motion: reduce) {
+    .amazon-bestseller-badge,
+    .amazon-bestseller-badge::after {
+        animation: none;
+    }
+}
+
+
 @media (max-width: 650px) {
   .books-page .format-options {
     gap: 7px;

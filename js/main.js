@@ -4,7 +4,9 @@ const header = `
   <button class="menu-toggle" aria-label="Toggle navigation" aria-expanded="false">☰</button>
   <nav class="nav" aria-label="Main navigation">
     <a href="index.html">Home</a><a href="books.html">Books</a><a href="about.html">About</a>
-    <a href="resources.html">Free resources</a><a href="blog.html">Notes</a><a class="nav-cta" href="contact.html">Contact</a>
+    <a href="resources.html">Library</a>
+    <a href="blog.html">Insights</a>
+    <a class="nav-cta" href="contact.html">Contact</a>
   </nav>
 </header>`;
 const footer = `<footer class="site-footer"><div class="footer-inner"><div class="footer-copy">© ${new Date().getFullYear()} Zayen Kairo. All rights reserved.</div><div class="footer-links"><a href="books.html">Books</a><a href="resources.html">Resources</a><a href="contact.html">Contact</a></div></div></footer>`;
@@ -19,8 +21,102 @@ if (typeof books !== "undefined") {
   if (featured) featured.innerHTML = books.filter(b => b.featured).map(bookCard).join("");
   if (all) all.innerHTML = books.map(bookCard).join("");
 }
+
+/* =================================
+   MAILERLITE NEWSLETTER SIGNUP
+================================= */
+
 const newsletter = document.getElementById("newsletter-form");
-if (newsletter) newsletter.innerHTML = `<div class="newsletter-placeholder"><input type="email" placeholder="Your email address" aria-label="Your email address" disabled><button type="button" disabled>COMING SOON</button></div>`;
+
+if (newsletter) {
+  newsletter.innerHTML = `
+    <form class="newsletter-placeholder" id="newsletter-signup">
+      <label class="visually-hidden" for="newsletter-email">
+        Email address
+      </label>
+
+      <input
+        type="email"
+        id="newsletter-email"
+        name="email"
+        placeholder="Your email address"
+        autocomplete="email"
+        required
+      >
+
+      <div class="newsletter-honeypot" aria-hidden="true">
+        <label for="newsletter-website">Leave this field empty</label>
+        <input
+          type="text"
+          id="newsletter-website"
+          name="website"
+          tabindex="-1"
+          autocomplete="off"
+        >
+      </div>
+
+      <button type="submit" id="newsletter-submit">
+        SUBSCRIBE
+      </button>
+    </form>
+
+    <p
+      id="newsletter-message"
+      class="newsletter-message"
+      role="status"
+      aria-live="polite"
+    ></p>
+  `;
+
+  const form = document.getElementById("newsletter-signup");
+  const emailInput = document.getElementById("newsletter-email");
+  const submitButton = document.getElementById("newsletter-submit");
+  const message = document.getElementById("newsletter-message");
+
+  form.addEventListener("submit", async (event) => {
+    event.preventDefault();
+
+    const email = emailInput.value.trim();
+    const website = document.getElementById("newsletter-website").value;
+
+    message.textContent = "";
+
+    if (!email) {
+      message.textContent = "Please enter your email address.";
+      return;
+    }
+
+    submitButton.disabled = true;
+    submitButton.textContent = "SUBMITTING...";
+
+    try {
+      const response = await fetch("/api/subscribe", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({ email, website })
+      });
+
+      const result = await response.json();
+
+      if (!response.ok) {
+        throw new Error(result.message || "Unable to submit your subscription.");
+      }
+
+      message.textContent = result.message;
+      form.reset();
+
+    } catch (error) {
+      message.textContent =
+        error.message || "Something went wrong. Please try again.";
+    } finally {
+      submitButton.disabled = false;
+      submitButton.textContent = "SUBSCRIBE";
+    }
+  });
+}
+
 
 /* Home page motion: reveal sections as they enter the viewport. */
 (() => {
