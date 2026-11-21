@@ -10,11 +10,21 @@ function jsonResponse(data, status = 200) {
 
 export async function onRequestPost({ request, env }) {
   try {
-    if (!env.MAILERLITE_API_KEY || !env.MAILERLITE_GROUP_ID) {
-      return jsonResponse({
-        message: "Newsletter signup is temporarily unavailable."
-      }, 503);
-    }
+    if (!env.MAILERLITE_API_KEY) {
+  console.error("Missing runtime variable: MAILERLITE_API_KEY");
+
+  return jsonResponse({
+    message: "Server configuration error: API key unavailable."
+  }, 503);
+}
+
+if (!env.MAILERLITE_GROUP_ID) {
+  console.error("Missing runtime variable: MAILERLITE_GROUP_ID");
+
+  return jsonResponse({
+    message: "Server configuration error: Group ID unavailable."
+  }, 503);
+}
 
     const contentType = request.headers.get("Content-Type") || "";
 
