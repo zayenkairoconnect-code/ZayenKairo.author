@@ -1,0 +1,14 @@
+
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <rect width="64" height="64" rx="13" fill="#173D2E"/>
+  <rect x="3" y="3" width="58" height="58" rx="11"
+        fill="none" stroke="#C5A66A" stroke-width="1.5"/>
+  <text x="32" y="35" text-anchor="middle"
+        font-family="Georgia,serif" font-size="27"
+        font-weight="bold" fill="#F3E8C9">ZK</text>
+  <path d="M14 44 Q23 40 32 46 Q41 40 50 44
+           L50 52 Q41 48 32 54 Q23 48 14 52Z"
+        fill="none" stroke="#C5A66A" stroke-width="1.8"
+        stroke-linejoin="round"/>
+  <path d="M32 46 V54" stroke="#C5A66A" stroke-width="1.5"/>
+</svg>
