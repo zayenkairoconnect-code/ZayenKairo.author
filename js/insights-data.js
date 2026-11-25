@@ -12,7 +12,7 @@ window.insightsArticles = [
     excerpt: "A clear introduction to threats, vulnerabilities, risk, authentication, encryption, network security and the everyday habits that help protect digital systems.",
     date: "2026-11-23",
     readTime: "9 min read",
-    image: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=1200&q=82",
+    image: "https://images.unsplash.com/photo-1563013544-824ae1b704d3?auto=format&fit=crop&w=1400&q=85",
     imageAlt: "Cybersecurity operations displayed on computer monitors",
     url: "insights/cybersecurity-fundamentals.html",
     keywords: "cybersecurity basics information security threats vulnerabilities risk authentication encryption firewall malware phishing",

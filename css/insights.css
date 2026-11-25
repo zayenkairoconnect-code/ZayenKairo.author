@@ -414,7 +414,168 @@
   opacity: 0.10;
 }
 
+/* Fix featured article: HTML uses #featured-insight, not .featured-insight */
+#featured-insight {
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+  align-items: stretch;
+  min-height: 0;
+  margin: 0 0 68px;
+  overflow: hidden;
+  border: 1px solid #dedbd1;
+  background: #e9e6dc;
+}
 
+#featured-insight[hidden] {
+  display: none !important;
+}
+
+#featured-insight .featured-image {
+  display: block;
+  min-width: 0;
+  min-height: 0;
+  height: 100%;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  background: #d8d8ce;
+}
+
+#featured-insight .featured-image img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+  object-fit: cover;
+  object-position: center;
+  transition: transform 0.6s ease;
+}
+
+#featured-insight:hover .featured-image img {
+  transform: scale(1.035);
+}
+
+#featured-insight .featured-copy {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  min-width: 0;
+  padding: clamp(24px, 3.5vw, 48px);
+}
+
+#featured-insight .featured-copy > .eyebrow {
+  margin: 0 0 16px;
+  color: #a46f35;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+}
+
+#featured-insight .insight-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px 12px;
+  margin: 0 0 15px;
+  color: #73786e;
+  font-size: 10px;
+  line-height: 1.5;
+  letter-spacing: 0.04em;
+}
+
+#featured-insight .featured-copy h3 {
+  margin: 0 0 15px;
+  color: #20251f;
+  font: 600 clamp(23px, 2.3vw, 34px) / 1.2
+    var(--serif, "Playfair Display", Georgia, serif);
+  letter-spacing: -0.025em;
+}
+
+#featured-insight .featured-copy > p:not(.eyebrow) {
+  margin: 0 0 24px;
+  color: #62685f;
+  font: 400 13px / 1.8 var(--sans, "DM Sans", Arial, sans-serif);
+}
+
+#featured-insight .insight-read-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 2px;
+  width: 172px;
+  padding: 10px 12px 8px;
+  border-bottom: 1px solid var(--gold, #b18a52);
+  color: whitesmoke;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.09em;
+  line-height: 1.4;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+#featured-insight .insight-read-link:hover {
+  color: #8b642f;
+}
+
+@media (max-width: 760px) {
+  #featured-insight {
+    grid-template-columns: 1fr;
+  }
+
+  #featured-insight .featured-image {
+    aspect-ratio: 16 / 9;
+    max-height: 320px;
+  }
+
+  #featured-insight .featured-copy {
+    padding: 26px;
+  }
+}
+
+@media (max-width: 480px) {
+  #featured-insight .featured-copy {
+    padding: 22px;
+  }
+
+  #featured-insight .featured-copy h3 {
+    font-size: 25px;
+  }
+}
+
+.insight-read-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  min-height: 42px;
+  padding: 0 17px;
+  border: 1px solid var(--green, #34483d);
+  background: var(--green, #34483d);
+  color: #fffefa;
+  text-decoration: none;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  transition: background 0.2s ease, color 0.2s ease, transform 0.2s ease;
+}
+
+.insight-read-link:hover {
+  background: transparent;
+  color: var(--green, #34483d);
+  transform: translateY(-1px);
+}
+
+.insight-read-link.is-disabled {
+  border-color: #d8d5ca;
+  background: #e9e6dc;
+  color: #77796f;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+.insight-read-link.is-disabled:hover {
+  transform: none;
+}
 
 /* Existing site reveal utility may be used by main.js. Keep content visible
    if the observer does not initialize or JavaScript is unavailable. */

@@ -151,68 +151,64 @@
     /* ARTICLE CARDS */
 
     const renderCard = (article, index) => {
-      const isPublished = publishedArticle(article);
-      const url = isPublished ? safeUrl(article.url) : "#latest-insights";
-      const image = safeUrl(article.image);
+  const isPublished = publishedArticle(article);
+  const url = safeUrl(article.url);
+  const image = safeUrl(article.image);
 
-      const imageAlt = escapeHTML(
-        article.imageAlt || article.title || "Technology article image"
-      );
+  const imageAlt = escapeHTML(
+    article.imageAlt || article.title || "Technology article image"
+  );
 
-      const title = escapeHTML(article.title || "Untitled article");
+  const title = escapeHTML(article.title || "Untitled article");
+  const excerpt = escapeHTML(
+    article.excerpt || "More details will be available soon."
+  );
 
-      const excerpt = escapeHTML(
-        article.excerpt || "More details will be available soon."
-      );
+  const imageHTML = image
+    ? `<img
+         src="${escapeHTML(image)}"
+         alt="${imageAlt}"
+         loading="lazy"
+         decoding="async"
+       >`
+    : '<span class="insight-image-placeholder" aria-hidden="true"></span>';
 
-      return `
-        <article
-          class="insight-card ${isPublished ? "" : "is-coming-soon"}"
-          style="--card-index:${index}"
-        >
+  return `
+    <article
+      class="insight-card ${isPublished ? "" : "is-coming-soon"}"
+      style="--card-index:${index}"
+    >
+      ${
+        isPublished
+          ? `<a class="insight-card-image" href="${escapeHTML(url)}">${imageHTML}</a>`
+          : `<div class="insight-card-image">${imageHTML}</div>`
+      }
 
-          <a
-            class="insight-card-image"
-            href="${escapeHTML(url)}"
-            ${!isPublished ? 'aria-label="Browse latest insights"' : ""}
-          >
-            ${
-              image
-                ? `<img
-                    src="${escapeHTML(image)}"
-                    alt="${imageAlt}"
-                    loading="lazy"
-                    decoding="async"
-                  >`
-                : '<span class="insight-image-placeholder" aria-hidden="true"></span>'
-            }
-          </a>
+      <div class="insight-card-body">
+        ${renderMeta(article)}
 
-          <div class="insight-card-body">
+        <h3>
+          ${
+            isPublished
+              ? `<a href="${escapeHTML(url)}">${title}</a>`
+              : title
+          }
+        </h3>
 
-            ${renderMeta(article)}
+        <p>${excerpt}</p>
 
-            <h3>
-              ${
-                isPublished
-                  ? `<a href="${escapeHTML(url)}">${title}</a>`
-                  : title
-              }
-            </h3>
-
-            <p>${excerpt}</p>
-
-            ${
-              isPublished
-                ? `<a class="insight-read-link" href="${escapeHTML(url)}">
-                    READ ARTICLE <span aria-hidden="true">↗</span>
-                  </a>`
-                : '<span class="insight-status">ARTICLE COMING SOON</span>'
-            }
-
-          </div>
-        </article>`;
-    };
+        ${
+          isPublished
+            ? `<a class="insight-read-link" href="${escapeHTML(url)}">
+                 READ ARTICLE <span aria-hidden="true">↗</span>
+               </a>`
+            : `<span class="insight-read-link is-disabled" aria-disabled="true">
+                 ARTICLE COMING SOON
+               </span>`
+        }
+      </div>
+    </article>`;
+};
 
     /* FEATURED ARTICLE */
 
